@@ -96,3 +96,4 @@ Accede a Swagger en: [http://localhost:8080/swagger-ui/index.html](http://localh
 Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más información.
 # educa-backend
 # educa-backend
+# educa-backend
