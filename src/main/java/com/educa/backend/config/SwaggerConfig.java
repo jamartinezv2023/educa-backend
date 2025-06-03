@@ -1,5 +1,3 @@
-package com.educa.backend.config.SwaggerConfig;
-
 package com.educa.backend.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
@@ -18,6 +16,8 @@ public class SwaggerConfig {
                         .title("Plataforma Educativa API")
                         .description("Documentación de la API REST para la plataforma educativa personalizada")
                         .version("1.0")
-                        .contact(new Contact().name("Equipo Educa").email("soporte@educa.com")));
+                        .contact(new Contact()
+                                .name("Equipo Educa")
+                                .email("soporte@educa.com")));
     }
 }

@@ -1,8 +1,6 @@
-package com.educa.backend.dto.user.UserMapper;
+package com.educa.backend.dto.user;
 
-package com.educa.backend.dto;
-
-import com.educa.backend.domain.model.User;
+import com.educa.backend.domain.model.user.User;
 
 public class UserMapper {
     public static UserDTO toDto(User user) {
@@ -11,8 +9,8 @@ public class UserMapper {
                 .username(user.getUsername())
                 .email(user.getEmail())
                 .profileImage(user.getProfileImage())
-                .roles(user.getRoles())
-                .permissions(user.getPermissions())
+                .roles(user.getRoles())             // roles son Set<String>
+                .permissions(user.getPermissions()) // permisos son Set<String>
                 .build();
     }
 }

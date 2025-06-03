@@ -1,6 +1,4 @@
-package com.educa.backend.dto.user.UserDTO;
-
-package com.educa.backend.dto;
+package com.educa.backend.dto.user;
 
 import lombok.*;
 import java.util.Set;

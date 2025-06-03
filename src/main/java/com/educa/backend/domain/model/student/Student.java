@@ -1,8 +1,9 @@
-package com.educa.backend.domain.model.student.Student;
-
 package com.educa.backend.domain.model;
 
+import com.educa.backend.domain.model.user.User; // <-- IMPORT CORRECTO
+
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class Student {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,7 +24,10 @@ public class Student {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @NotBlank
     private String fullName;
+
+    @Past
     private LocalDate birthDate;
 
     @Enumerated(EnumType.STRING)

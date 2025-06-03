@@ -1,6 +1,6 @@
-package com.educa.backend.config.SecurityConfig;
-
 package com.educa.backend.config;
+
+
 
 import com.educa.backend.security.JwtFilter;
 import com.educa.backend.security.UserDetailsServiceImpl;

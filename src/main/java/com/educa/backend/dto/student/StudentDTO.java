@@ -1,6 +1,4 @@
-package com.educa.backend.dto.student.StudentDTO;
-
-package com.educa.backend.dto;
+package com.educa.backend.dto.student;
 
 import com.educa.backend.domain.model.FelderSilvermanStyle;
 import com.educa.backend.domain.model.AcademicPerformance;

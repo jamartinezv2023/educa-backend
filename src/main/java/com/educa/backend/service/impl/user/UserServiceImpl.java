@@ -1,10 +1,9 @@
-package com.educa.backend.service.impl.user.UserServiceImpl;
+package com.educa.backend.service.impl.user;
 
-package com.educa.backend.service.impl;
-
-import com.educa.backend.domain.model.User;
-import com.educa.backend.domain.repository.UserRepository;
+import com.educa.backend.domain.model.user.User;
+import com.educa.backend.domain.repository.user.UserRepository;
 import com.educa.backend.service.UserService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -38,17 +37,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateUser(Long id, User user) {
-        return userRepository.findById(id).map(existing -> {
-            existing.setUsername(user.getUsername());
-            existing.setEmail(user.getEmail());
-            existing.setProfileImage(user.getProfileImage());
-            return userRepository.save(existing);
-        }).orElseThrow();
+    public Optional<User> updateUser(Long id, User user) {
+        return userRepository.findById(id).map(existingUser -> {
+            existingUser.setUsername(user.getUsername());
+            existingUser.setEmail(user.getEmail());
+            existingUser.setPassword(user.getPassword());
+            existingUser.setProfileImage(user.getProfileImage());
+            existingUser.setRoles(user.getRoles());
+            return userRepository.save(existingUser);
+        });
     }
 
     @Override
     public void deleteUser(Long id) {
+        if (!userRepository.existsById(id)) {
+            throw new EntityNotFoundException("User not found with id: " + id);
+        }
         userRepository.deleteById(id);
     }
 }

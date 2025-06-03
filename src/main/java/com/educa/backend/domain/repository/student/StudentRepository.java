@@ -1,5 +1,3 @@
-package com.educa.backend.domain.repository.student.StudentRepository;
-
 package com.educa.backend.domain.repository;
 
 import com.educa.backend.domain.model.Student;

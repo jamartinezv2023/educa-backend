@@ -1,5 +1,3 @@
-package com.educa.backend.exception.GlobalExceptionHandler;
-
 package com.educa.backend.exception;
 
 import jakarta.validation.ConstraintViolationException;
@@ -33,6 +31,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> handleGeneralException(Exception ex) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno: " + ex.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                             .body("Error interno: " + ex.getMessage());
     }
 }

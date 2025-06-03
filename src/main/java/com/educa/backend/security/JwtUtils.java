@@ -1,40 +1,54 @@
-package com.educa.backend.security.JwtUtils;
-
 package com.educa.backend.security;
 
 import io.jsonwebtoken.*;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
 import java.util.Date;
 
 @Component
 public class JwtUtils {
 
-    @Value("${jwt.secret}")
-    private String jwtSecret;
+    private final JwtProperties jwtProperties;
 
-    @Value("${jwt.expirationMs}")
-    private int jwtExpirationMs;
+    public JwtUtils(JwtProperties jwtProperties) {
+        this.jwtProperties = jwtProperties;
+    }
 
     public String generateJwt(String subject) {
         return Jwts.builder()
                 .setSubject(subject)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationMs))
-                .signWith(SignatureAlgorithm.HS512, jwtSecret)
+                .setExpiration(new Date(System.currentTimeMillis() + jwtProperties.getExpiration()))
+                .signWith(SignatureAlgorithm.HS512, jwtProperties.getSecret())
                 .compact();
     }
 
     public String getUsernameFromJwt(String token) {
-        return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
+        return parseClaims(token).getSubject();
     }
 
     public boolean validateJwt(String token) {
         try {
-            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token);
+            parseClaims(token);
             return true;
-        } catch (JwtException | IllegalArgumentException e) {
-            return false;
+        } catch (ExpiredJwtException e) {
+            System.out.println("JWT expirado: " + e.getMessage());
+        } catch (UnsupportedJwtException e) {
+            System.out.println("JWT no soportado: " + e.getMessage());
+        } catch (MalformedJwtException e) {
+            System.out.println("JWT malformado: " + e.getMessage());
+        } catch (SignatureException e) {
+            System.out.println("Firma inválida: " + e.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println("JWT vacío o nulo: " + e.getMessage());
         }
+        return false;
+    }
+
+    private Claims parseClaims(String token) {
+        return Jwts.parser()
+                .setSigningKey(jwtProperties.getSecret())
+                .parseClaimsJws(token)
+                .getBody();
     }
 }

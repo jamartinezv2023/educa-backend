@@ -1,14 +1,14 @@
-package com.educa.backend.service.impl.student.StudentService;
-
-package com.educa.backend.service.impl;
+package com.educa.backend.service;
 
 import com.educa.backend.domain.model.Student;
 import java.util.List;
+import java.util.Optional;
 
 public interface StudentService {
     Student createStudent(Student student);
-    Student getStudent(Long id);
+    Optional<Student> getStudent(Long id);  // Optional para manejo seguro
     List<Student> getAllStudents();
     Student updateStudent(Long id, Student student);
     void deleteStudent(Long id);
 }
+

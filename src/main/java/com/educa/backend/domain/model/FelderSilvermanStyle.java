@@ -1,5 +1,3 @@
-package com.educa.backend.domain.model.FelderSilvermanStyle;
-
 package com.educa.backend.domain.model;
 
 import jakarta.persistence.Embeddable;

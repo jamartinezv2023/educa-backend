@@ -1,5 +1,3 @@
-package com.educa.backend.domain.model.AcademicPerformance;
-
 package com.educa.backend.domain.model;
 
 import jakarta.persistence.Embeddable;
@@ -15,4 +13,3 @@ public class AcademicPerformance {
     private String studyHabits;
     private int participationLevel;
 }
-

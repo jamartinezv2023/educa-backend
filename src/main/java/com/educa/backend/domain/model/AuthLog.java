@@ -1,6 +1,10 @@
-package com.educa.backend.domain.model.AuthLog;
-
 package com.educa.backend.domain.model;
+
+import jakarta.persistence.Embeddable;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDateTime;
 
 @Embeddable

@@ -1,6 +1,4 @@
-package com.educa.backend.dto.student.StudentMapper;
-
-package com.educa.backend.dto;
+package com.educa.backend.dto.student;
 
 import com.educa.backend.domain.model.Student;
 
